@@ -32,7 +32,7 @@ def solution(board):
     yAxis = len(board)
     def move(x,y):
         if x==xAxis and y==yAxis:
-            
+            pass
         if y+1 < yAxis:
             if board[y+1][x] == 0:
                 move(x,y+1)
