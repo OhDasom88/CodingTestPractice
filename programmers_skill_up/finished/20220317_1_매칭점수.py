@@ -47,9 +47,11 @@ import re
 def solution(word, pages):
     pageInfo = {}
     for i, page in enumerate(pages):
-        baseURL = re.search(r'(?<=https:\/\/).+(?=["|\'])', re.search(r'<meta property="og:url" content="https://\S+"',page).group()).group()
+        # baseURL = re.search(r'https.+(?=["|\'])', re.search(r'<meta property="og:url".+>?',page).group()).group()
+        baseURL = re.search(r'(?<=https:\/\/).+(?=")', re.search(r'<meta property="og:url" content="https://\S+"',page).group()).group()
         baseScore = len([token for token in re.split(r'[^a-zA-Z]',page) if token.lower()==word.lower()])
-        link = [re.search(r'(?<=https:\/\/).+(?=["|\'])',href).group() for href in re.findall(r'<a.+?>',page)]
+        # link = (re.search(r'https.+(?=")',href) for href in re.findall(r'href=.+?>',page))
+        link = [re.search(r'(?<=https:\/\/).+(?=")',href).group() for href in re.findall(r'<a.+?>',page)]
         pageInfo[baseURL] = (i,baseScore,link)
     tmp = []
     for k, (idx, score, lin) in pageInfo.items():

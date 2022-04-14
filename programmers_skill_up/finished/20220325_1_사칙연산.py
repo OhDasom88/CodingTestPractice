@@ -19,63 +19,6 @@ number는 1 이상 32,000 이하입니다.
 from cmath import inf
 
 def solution(N, number):
-    def tmp(structure):
-        if sum([isinstance(target, list) for target in structure])==0:
-            t1, t2 = structure
-            c1, c2 = int(t1), int(t2)
-            ans = [c1+c2, c1-c2, c1*c2, int(t1+t2)]
-            if c1%c2==0:
-                ans.append(c1/c2)
-            return ans
-        else:
-            return []
-    # def tmp1(struc):
-
-    def op(structures):
-        ans = []
-        for structure in structures:
-            t1, t2 = structure
-            if isinstance(t1, int) and isinstance(t2, int):
-                ans.append([t1+t2, t1-t2, t1*t2, t1//t2])
-            elif isinstance(t1, list) and isinstance(t2, list):
-                for ii in op(t1):
-                    for jj in op(t2):
-                        for i in ii:
-                            for j in jj:
-                                ans.append(i+j)
-                                ans.append(i-j)
-                                ans.append(i*j)
-                                ans.append(i//j)
-            elif isinstance(t1, int):
-                # ans = []
-                for ii in op(t2): 
-                    for i in ii:
-                        ans.append(t1+i)
-                        ans.append(t1-i)
-                        ans.append(t1*i)
-                        ans.append(t1//i)
-                # return ans
-            elif isinstance(t2, int):
-                # ans = []
-                for ii in op(t1):
-                    for i in ii:
-                        
-                        ans.append(t2+i)
-                        ans.append(t2-i)
-                        ans.append(t2*i)
-                        ans.append(t2//i)
-                # return ans
-        # if sum([isinstance(target, list) for target in structure])==0:
-        #     for target in structure:
-        #         target = 0
-        # else:
-        #     for target1, target2 in structure:
-        #         op(target1) + op(target2)
-        #         if isinstance(target, list):
-        #             op(target)
-        #         else:
-
-        return ans
     def sol(nums):
         if len(nums)==1:
             return [int(nums)]
@@ -93,10 +36,6 @@ def solution(N, number):
                     if n2!=0:
                         ans.add(n1//n2)
         return ans
-            
-    
-
-    answer = 0
     for cnt in range(1,9):
         if number in sol(str(N)*cnt):
             return cnt
